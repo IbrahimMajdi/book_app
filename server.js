@@ -35,46 +35,45 @@ app.get('/searches/new', (req, res) => {
 })
 
 //get api books
-app.post('/searches', (req, res) => {
+app.get('/searches', (req, res) => {
 
-    let url = `GET https://www.googleapis.com/books/v1/volumes?q=${'flowers'}&orderBy=newest`;
+    let url = `https://www.googleapis.com/books/v1/volumes?q=flowers&orderBy=newest`;
 
     superagent.get(url).then(book => {
 
         let bookDetails = book.body.items.map(item => {
-            let newBook = new Book(item);
-            return newBook;
+            return new Book(item);
         })
+
+        console.log(bookDetails);
         return bookDetails;
-    }).then(
-
-        app.get('/searches/show', (req, res) => {
-            // res.status(200).send(req.query)
-            res.render('pages/searches/show.ejs', {
-                booksData: bookDetails
-            });
-        }))
-
+    }).then(results => res.render('pages/searches/show.ejs', {
+        booksData: results
+    }))
 })
 
-//Render the newly constructed array of objects in a new view
+
+// res.send("sooo")
+
+
 
 
 function Book(item) {
 
-    let thumbCheck = item.volumeInfo.thumbnail;
-    thumbCheck = thumbCheck.replace(/^http:\/\//i, 'https://');
+    // let thumbCheck = item.volumeInfo.thumbnail;
+    // thumbCheck = thumbCheck.replace(/^http:\/\//i, 'https://');
+
     this.title = item.volumeInfo.title;
     this.authorName = item.volumeInfo.authors[0];
     this.description = item.volumeInfo.description;
-    this.thumbnail = check(thumbCheck);
+    this.thumbnail = item.volumeInfo.imageLinks.thumbnail;
 }
 
 
-var check = thumb => {
-    let res = thumb ? thumb : 'https://i.imgur.com/J5LVHEL.jpg'
-    return res;
-}
+// var check = thumb => {
+//     let res = thumb ? thumb : 'https://i.imgur.com/J5LVHEL.jpg'
+//     return res;
+// }
 
 
 app.listen(PORT, () => {

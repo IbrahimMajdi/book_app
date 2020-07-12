@@ -11,14 +11,22 @@
 <body>
 
     <ul>
-        <% bookDetails.forEach(book =>{ %>
+        <% booksData.forEach(book =>{ %>
         <li>
-            <%= book %>
+            <%= book.title %>
+        </li>
+        <li>
+        <%= book.authorName %>
+        </li>
+        <li>
+        <%= book.description %>
+        </li>
+        <li>
+        <%= book.thumbnail %>
         </li>
 
+
         <% }); %>
-
-
 
     </ul>
 
