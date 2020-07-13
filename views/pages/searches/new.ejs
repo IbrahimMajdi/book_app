@@ -11,20 +11,27 @@
 
 <body>
 
-    <select id="type">
+  
+    <form action="/searches" method="post">
 
-        <option value="title">Title</option>
-        <option value="author">Author</option>
+        <label>
+            <span>search</span>
+            <input type="text" name="searchbox" required><br>
+        </label>
 
-    </select>
+        <label for="title">
+            <span>title</span>
+            <input type="radio" name="search" id="title" value="title" required><br>
+        </label>
 
-    <form action="/searches/show" method="get">
+        <label for="author">
+            <span>author</span>
+            <input type="radio" name="search" id="author" value="author" required>
+        </label>
 
-        <input type="text" id="search">
-        <input type="button" value="search" id="sub">
-
+        <button>search</button>
     </form>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/app.js"></script>
 </body>
