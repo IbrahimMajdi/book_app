@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/base.css">
+    <title>Book info</title>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <img src=<%= bookInfo.thumbnail %> />
+        </li>
+        <li>
+            <%= bookInfo.title %>
+        </li>
+        <li>
+            <%= bookInfo.authorName %>
+        </li>
+        <li>
+            <%= bookInfo.description %>
+        </li>
+    </ul>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="/app.js"></script>
+</body>
+
+</html>

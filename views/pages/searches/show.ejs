@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/styles/base.css">
     <title>show</title>
 </head>
 
@@ -13,25 +13,48 @@
     <ul>
         <% booksData.forEach(book =>{ %>
         <li>
+            <img src=<%= book.thumbnail %> />
+        </li>
+        <li>
             <%= book.title %>
         </li>
         <li>
-        <%= book.authorName %>
+            <%= book.authorName %>
         </li>
         <li>
-        <%= book.description %>
-        </li>
-        <li>
-        <img src = <%= book.thumbnail %> />
+            <%= book.description %>
         </li>
 
+        <button id="selectBook"> select this book</button>
 
+        <form action="/book" method="POST" id="bookDetails">
+            <label for="title">title:</label><br>
+            <input type="text" id="tilte" name="title" value="<%= book.title %>"><br>
+            <label for="authorName">Author Name:</label><br>
+            <input type="text" id="authorName" name="authorName" value=" <%= book.authorName %>"><br><br>
+            <label for="identifier">identifier</label><br>
+            <input type="text" id="identifier" name="identifier" value="<%= book.identifier %>"><br><br>
+            <label for="thumbnail">image URL</label><br>
+            <input type="text" id="thumbnail" name="thumbnail" value="<%= book.thumbnail %>"><br><br>
+            <label for="description">description</label><br>
+            <input type="text" id="description" name="description" value=" <%= book.description %>"><br><br><br><br>
+
+            <label for="shelfName">book shelf name</label><br>
+            <input type="text" id="shelfName" name="shelfName" value=""><br><br>
+            <button>add to database</button>
+
+        </form>
         <% }); %>
+
+
 
     </ul>
 
 
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="/app.js"></script>
 </body>
 
 </html>

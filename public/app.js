@@ -1,3 +1,6 @@
-$('#sub').on('click', function (event) {
-    console.log($('#search').val())
-})
+'use strict'
+
+
+$("#selectBook").click(function () {
+    $("#bookDetails").toggle();
+});
