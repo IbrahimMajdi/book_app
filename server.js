@@ -8,17 +8,22 @@ const {
 const superagent = require('superagent');
 const ejs = require('ejs');
 const pg = require('pg');
-
+const method_or = require('method-override');
 const PORT = process.env.PORT || 3030;
 const app = express();
-const client = new pg.Client(process.env.DATABASE_URL)
+const client = new pg.Client(process.env.DATABASE_URL);
 
+app.engine('html', ejs.renderFile);
 app.set('view engine', 'ejs');
+app.set("views", ["views/pages", "views/pages/searches"])
+
+
 app.use(express.static('./public'));
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+app.use(method_or('_method'));
 
 
 //Routs////////////////////
@@ -28,7 +33,7 @@ app.get('/', mainHandler)
 
 //search books page
 app.get('/searches/new', (req, res) => {
-    res.render('pages/searches/new.ejs');
+    res.render('new');
 })
 
 //get books from api and store them in DB 
@@ -40,19 +45,20 @@ app.get('/books/:book_id', bookInfo)
 // add a new book to DB.
 app.post('/book', addBook);
 
+//update book info
+app.put('/updatebook/:book_id',updateBook)
 
-
-
+//delete book
+app.delete('/deletebook/:book_id',deleteBook);
 ////routs handlers
 
 //main page function to render saved books from DB.
 function mainHandler(req, res) {
     let SQL = 'SELECT * FROM books;';
-    client.query(SQL).then(results => {
-        console.log("main handler", results.rowCount);
-        res.render('pages/index', {
-            results: results.rows,
-            booksNum: results.rowCount
+    client.query(SQL).then(books => {
+        res.render('index', {
+            books: books.rows,
+            booksNum: books.rowCount
         })
 
     })
@@ -70,8 +76,8 @@ function bookInfo(req, res) {
     client.query(SQL, values).then(result => {
 
         console.log("bookInfo", result.rows);
-        res.render('pages/bookInfo', {
-            bookInfo: result.rows[0]
+        res.render('bookInfo', {
+            books: result.rows[0]
         })
     })
 
@@ -97,14 +103,14 @@ function apiHandler(req, res) {
     console.log(url);
     superagent.get(url).then(book => {
 
-        let bookDetails = book.body.items.map(item => {
-            return new Book(item);
-        })
+        let bookDetails = book.body.items.map( item => {
+                    return new Book(item);
+                })
 
         return bookDetails;
 
-    }).then(results => res.render('pages/searches/show.ejs', {
-        booksData: results
+    }).then(results => res.render('show', {
+        books: results
     }))
 }
 
@@ -127,6 +133,27 @@ function addBook(req, res) {
 }
 
 
+function updateBook (req,res) { 
+    let {title,authorname,description,thumbnail,shelfName,identifier} = req.body;
+    let SQL = ` UPDATE books SET title=$1,authorname=$2,description=$3,thumbnail=$4,shelfName=$5,identifier=$6 WHERE id=$7;`
+    let id= req.params.book_id;
+    let values=[title,authorname,description,thumbnail,shelfName,identifier,id];
+
+    client.query(SQL,values).then(()=>{
+        res.redirect(`/books/${id}`)
+    })
+ }
+
+
+function deleteBook (req,res){
+    let SQL = `DELETE FROM books WHERE id=$1;`
+    let values=[req.params.book_id];
+    client.query(SQL,values).then(()=>{
+        res.redirect('/')
+    })
+
+}
+
 function Book(item) {
 
     let thumbCheck = item.volumeInfo.imageLinks.thumbnail;
@@ -140,27 +167,8 @@ function Book(item) {
 }
 
 
-// var checkImg = thumbCheck => {
-//     let res = thumbCheck ? thumbCheck : 'https://i.imgur.com/J5LVHEL.jpg'
-//     return res;
-// }
-
-// var checkTitle = title => {
-//     let res = title ? title : 'not avilable'
-//     return res;
-// }
-// var checkAuthor = authorname => {
-//     let res = authorname ? authorname : 'not avilable'
-//     return res;
-// }
-
-// var checkDescription = description => {
-//     let res = description ? description : 'not avilable'
-//     return res;
-// }
-
 app.get('*', (req, res) => {
-    res.render('pages/error.ejs');
+    res.render('error');
 })
 
 client.connect()

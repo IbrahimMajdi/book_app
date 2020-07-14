@@ -1,0 +1,16 @@
+<form action="/book" method="POST" class="hide_form">
+    <label for="title">title:</label><br>
+    <input type="text" id="tilte" name="title" value="<%= books.title %>"><br>
+    <label for="authorname">Author Name:</label><br>
+    <input type="text" id="authorname" name="authorname" value=" <%= books.authorname %>"><br><br>
+    <label for="identifier">identifier</label><br>
+    <input type="text" id="identifier" name="identifier" value="<%= books.identifier %>"><br><br>
+    <label for="thumbnail">image URL</label><br>
+    <input type="text" id="thumbnail" name="thumbnail" value="<%= books.thumbnail %>"><br><br>
+    <label for="description">description</label><br>
+    <input type="text" id="description" name="description" value=" <%= books.description %>"><br><br><br><br>
+
+    <label for="shelfName">book shelf name</label><br>
+    <input type="text" id="shelfname" name="shelfname" value=""><br><br>
+    <button>add to database</button>
+</form>

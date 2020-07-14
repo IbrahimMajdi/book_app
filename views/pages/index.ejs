@@ -11,26 +11,35 @@
 
 <body>
     <h1>books app</h1>
+
     <a href="/searches/new"> search books</a>
+
     <ul>
+
         <h3> books number :<%= booksNum  %> </h3>
 
-        <% results.forEach(book=> { %>
+        <% books.forEach(books=> { %>
+        <i>
+            <img src=<%= books.thumbnail %> />
+        </i>
+        <i>
+            <%= books.title %>
+        </i>
+        <i>
+            <%= books.authorname %>
+        </i>
         <li>
-            <img src="<%=book.thumbnail%>">
-            <p> Book title: <%= book.title %> </p>
-
-            <p> Author Name: <%= book.authorname %> </p>
-
-            <p>description: <%= book.description %></p>
+            <%= books.description %>
         </li>
-        <button> <a href="books/<%=book.id%>"> Details</a></button>
-        <!-- <input type="button" name="button"
-             value="Details" formaction="'/'"> -->
+
+        <button> <a href="books/<%=books.id%>"> Details</a></button>
 
         <% }) %>
 
     </ul>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="/app.js"></script>
 </body>
 
 </html>

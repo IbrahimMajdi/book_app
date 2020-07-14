@@ -2,7 +2,7 @@
 
 
 .show_form{
-    display: inline;
+    display: block;
 }
 a {
     text-decoration: none;

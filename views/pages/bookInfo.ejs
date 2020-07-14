@@ -7,27 +7,42 @@
     <link rel="stylesheet" href="/styles/base.css">
     <title>Book info</title>
 </head>
+<a href="/"> homepage</a>
 
 <body>
+
     <ul>
-        <li>
-            <img src=<%= bookInfo.thumbnail %> />
-        </li>
-        <li>
-            <%= bookInfo.title %>
-        </li>
-        <li>
-            <%= bookInfo.authorname %>
-        </li>
-        <li>
-            <%= bookInfo.description %>
-        </li>
+        <%- include('partials/infoLoop.ejs') %>
     </ul>
 
+    
+    <form action="/deletebook/<%= books.id %>?_method=delete" method="post">
+        <button class="deletebook"> delete book</button>
+    </form>
+
+    <button class="updatedetails"> Update details</button>
+
+    <form action="/updatebook/<%= books.id %>?_method=put" method="POST" class="hide_form">
+        <label for="title">title:</label><br>
+        <input type="text" id="tilte" name="title" value="<%= books.title %>"><br>
+        <label for="authorname">Author Name:</label><br>
+        <input type="text" id="authorname" name="authorname" value=" <%= books.authorname %>"><br><br>
+        <label for="identifier">identifier</label><br>
+        <input type="text" id="identifier" name="identifier" value="<%= books.identifier %>"><br><br>
+        <label for="thumbnail">image URL</label><br>
+        <input type="text" id="thumbnail" name="thumbnail" value="<%= books.thumbnail %>"><br><br>
+        <label for="description">description</label><br>
+        <input type="text" id="description" name="description" value=" <%= books.description %>"><br><br><br><br>
+
+        <label for="shelfName">book shelf name</label><br>
+        <input type="text" id="shelfname" name="shelfname" value=""><br><br>
+        <button class="updateBooks"> Update book</button>
+    </form>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/app.js"></script>
+
 </body>
 
 </html>
