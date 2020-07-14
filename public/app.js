@@ -1,6 +1,6 @@
 'use strict'
 
 
-$("#selectBook").click(function () {
-    $("#bookDetails").toggle();
-});
+$(".selectBook").on('click', function () {
+    $(this).next().toggleClass("show_form")
+})

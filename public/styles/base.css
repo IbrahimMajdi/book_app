@@ -1,6 +1,9 @@
-#bookDetails{ display: none; }
+.hide_form{ display: none; }
 
 
+.show_form{
+    display: inline;
+}
 a {
     text-decoration: none;
     color: black;

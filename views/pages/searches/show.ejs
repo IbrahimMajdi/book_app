@@ -19,19 +19,19 @@
             <%= book.title %>
         </li>
         <li>
-            <%= book.authorName %>
+            <%= book.authorname %>
         </li>
         <li>
             <%= book.description %>
         </li>
 
-        <button id="selectBook"> select this book</button>
+        <button class="selectBook"> select this book</button>
 
-        <form action="/book" method="POST" id="bookDetails">
+        <form action="/book" method="POST" class="hide_form">
             <label for="title">title:</label><br>
             <input type="text" id="tilte" name="title" value="<%= book.title %>"><br>
-            <label for="authorName">Author Name:</label><br>
-            <input type="text" id="authorName" name="authorName" value=" <%= book.authorName %>"><br><br>
+            <label for="authorname">Author Name:</label><br>
+            <input type="text" id="authorname" name="authorname" value=" <%= book.authorname %>"><br><br>
             <label for="identifier">identifier</label><br>
             <input type="text" id="identifier" name="identifier" value="<%= book.identifier %>"><br><br>
             <label for="thumbnail">image URL</label><br>
@@ -40,7 +40,7 @@
             <input type="text" id="description" name="description" value=" <%= book.description %>"><br><br><br><br>
 
             <label for="shelfName">book shelf name</label><br>
-            <input type="text" id="shelfName" name="shelfName" value=""><br><br>
+            <input type="text" id="shelfname" name="shelfname" value=""><br><br>
             <button>add to database</button>
 
         </form>
