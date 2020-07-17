@@ -12,10 +12,21 @@
 <body>
 
     <ul>
-        <%- include('partials/infoLoop.ejs') %>
+        <li>
+            <img src=<%= books.thumbnail %> />
+        </li>
+        <li>
+            <%= books.title %>
+        </li>
+        <li>
+            <%= books.authorname %>
+        </li>
+        <li>
+            <%= books.description %>
+        </li>
     </ul>
 
-    
+
     <form action="/deletebook/<%= books.id %>?_method=delete" method="post">
         <button class="deletebook"> delete book</button>
     </form>

@@ -75,7 +75,7 @@ function bookInfo(req, res) {
 
     client.query(SQL, values).then(result => {
 
-        console.log("bookInfo", result.rows);
+        // console.log("bookInfo", result.rows);
         res.render('bookInfo', {
             books: result.rows[0]
         })
@@ -100,7 +100,7 @@ function apiHandler(req, res) {
     if (search === 'author') {
         url = `https://www.googleapis.com/books/v1/volumes?q=%20+inauthor:${searchbox}`
     }
-    console.log(url);
+    // console.log(url);
     superagent.get(url).then(book => {
 
         let bookDetails = book.body.items.map( item => {
@@ -135,7 +135,7 @@ function addBook(req, res) {
 
 function updateBook (req,res) { 
     let {title,authorname,description,thumbnail,shelfName,identifier} = req.body;
-    let SQL = ` UPDATE books SET title=$1,authorname=$2,description=$3,thumbnail=$4,shelfName=$5,identifier=$6 WHERE id=$7;`
+    let SQL = `UPDATE books SET title=$1,authorname=$2,description=$3,thumbnail=$4,shelfName=$5,identifier=$6 WHERE id=$7;`
     let id= req.params.book_id;
     let values=[title,authorname,description,thumbnail,shelfName,identifier,id];
 
@@ -156,14 +156,14 @@ function deleteBook (req,res){
 
 function Book(item) {
 
-    let thumbCheck = item.volumeInfo.imageLinks.thumbnail;
-    thumbCheck = thumbCheck.replace(/^http:\/\//i, 'https://');
+    let thumbCheck = item.volumeInfo.imageLinks;
+    // thumbCheck = thumbCheck.replace(/^http:\/\//i, 'https://');
 
-    this.title = item.volumeInfo.title ? item.volumeInfo.title : 'not avilable';
-    this.authorname = item.volumeInfo.authors ? item.volumeInfo.authors : 'not avilable';
-    this.description = item.volumeInfo.description ? item.volumeInfo.description : 'not avilable';
-    this.thumbnail = thumbCheck ? thumbCheck : 'not avilable';
-    this.identifier = item.volumeInfo.industryIdentifiers[0].identifier ? item.volumeInfo.industryIdentifiers[0].identifier : 'not avilable';
+    this.title = (item.volumeInfo.title) ? item.volumeInfo.title : 'not avilable';
+    this.authorname = (item.volumeInfo.authors) ? item.volumeInfo.authors[0] : 'not avilable';
+    this.description = (item.volumeInfo.description) ? item.volumeInfo.description : 'not avilable';
+    this.thumbnail = (thumbCheck) ? thumbCheck.thumbnail : 'not avilable';
+    this.identifier = item.volumeInfo.industryIdentifiers ? item.volumeInfo.industryIdentifiers[0].identifierr : 'not avilable';
 }
 
 
