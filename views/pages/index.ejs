@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/styles/base.css"> -->
     <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/modules.css">
+    <link rel="stylesheet" href="/styles/reset.css">
 
     <title>BOOKS</title>
 </head>
 
 <body>
+
     <header>
         <h1>Best Books!</h1>
         <nav>
@@ -20,31 +25,22 @@
         </nav>
     </header>
 
-    <a href="/searches/new"> search books</a>
+    <h3 class="tit"> saved books number :<%= booksNum  %> </h3>
 
-    <ul>
-
-        <h3> books number :<%= booksNum  %> </h3>
-
+    <div id='info'>
         <% books.forEach(books=> { %>
-        <li>
+
+        <div class="bookInfo detail">
             <img src=<%= books.thumbnail %> />
-        </li>
-        <li>
-            <%= books.title %>
-        </li>
-        <li>
-            <%= books.authorname %>
-        </li>
-        <li>
-            <%= books.description %>
-        </li>
-
-        <button> <a href="books/<%=books.id%>"> Details</a></button>
-
+            <div class="book book1">
+                <h2><%= books.title %></h2>
+                <h3><%= books.authorname %></h3>
+            </div>
+            <button id="detail"> <a href="books/<%=books.id%>"> Details</a></button>
+        </div>
         <% }) %>
 
-    </ul>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/app.js"></script>

@@ -5,51 +5,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/modules.css">
+    <link rel="stylesheet" href="/styles/reset.css">
     <title>show</title>
 </head>
 
 <body>
 
-    <ul>
+    <header>
+        <h1>Best Books!</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/searches/new">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+
+
         <% books.forEach(books =>{ %>
-        <li>
-            <img src=<%= books.thumbnail %> />
-        </li>
-        <li>
-            <%= books.title %>
-        </li>
-        <li>
-            <%= books.authorname %>
-        </li>
-        <li>
-            <%= books.description %>
-        </li>
 
-        <button class="selectBook"> select this book</button>
+        <div class="bookInfo">
 
-        <form action="/book" method="POST" class="hide_form">
-            <label for="title">title:</label><br>
-            <input type="text" id="tilte" name="title" value="<%= books.title %>"><br>
-            <label for="authorname">Author Name:</label><br>
-            <input type="text" id="authorname" name="authorname" value=" <%= books.authorname %>"><br><br>
-            <label for="identifier">identifier</label><br>
-            <input type="text" id="identifier" name="identifier" value="<%= books.identifier %>"><br><br>
-            <label for="thumbnail">image URL</label><br>
-            <input type="text" id="thumbnail" name="thumbnail" value="<%= books.thumbnail %>"><br><br>
-            <label for="description">description</label><br>
-            <input type="text" id="description" name="description" value=" <%= books.description %>"><br><br><br><br>
+            <img src="<%= books.thumbnail %>">
+            <div class='book'>
+                <h2>
+                    <%= books.title %>
+                </h2>
+                <h3>
+                    <%= books.authorname %>
+                </h3>
+                <div id="desc">
+                    <p>
+                        <%= books.description %>
+                    </p>
+                </div>
 
-            <label for="shelfName">book shelf name</label><br>
-            <input type="text" id="shelfname" name="shelfname" value=""><br><br>
-            <button>add to database</button>
+            </div>
+            <button class="selectBook"> select this book</button>
 
-        </form>
-        <% }); %>
+            <form action="/book" method="POST" class="hide_form">
 
-    </ul>
+                <label for="title">title:</label><br>
+                <input type="text" id="tilte" name="title" value="<%= books.title %>"><br>
+                <label for="authorname">Author Name:</label><br>
+                <input type="text" id="authorname" name="authorname" value=" <%= books.authorname %>"><br><br>
+                <label for="identifier">identifier</label><br>
+                <input type="text" id="identifier" name="identifier" value="<%= books.identifier %>"><br><br>
+                <label for="thumbnail">image URL</label><br>
+                <input type="text" id="thumbnail" name="thumbnail" value="<%= books.thumbnail %>"><br><br>
+                <label for="description">description</label><br>
+                <input type="text" id="description" name="description" value=" <%= books.description %>"><br><br>
+                <label for="shelfName">book shelf name</label><br>
+                <input type="text" id="shelfname" name="shelfname" value=""><br><br>
+                <button class="addDB">add to database</button>
 
+            </form>
+            <% }); %>
 
+        </div>
 
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/app.js"></script>
