@@ -75,7 +75,7 @@ function bookInfo(req, res) {
 
     client.query(SQL, values).then(result => {
 
-        console.log("bookInfo", result.rows);
+        // console.log("bookInfo", result.rows);
         res.render('bookInfo', {
             books: result.rows[0]
         })
@@ -100,7 +100,7 @@ function apiHandler(req, res) {
     if (search === 'author') {
         url = `https://www.googleapis.com/books/v1/volumes?q=%20+inauthor:${searchbox}`
     }
-    console.log(url);
+    // console.log(url);
     superagent.get(url).then(book => {
 
         let bookDetails = book.body.items.map( item => {
@@ -135,7 +135,7 @@ function addBook(req, res) {
 
 function updateBook (req,res) { 
     let {title,authorname,description,thumbnail,shelfName,identifier} = req.body;
-    let SQL = ` UPDATE books SET title=$1,authorname=$2,description=$3,thumbnail=$4,shelfName=$5,identifier=$6 WHERE id=$7;`
+    let SQL = `UPDATE books SET title=$1,authorname=$2,description=$3,thumbnail=$4,shelfName=$5,identifier=$6 WHERE id=$7;`
     let id= req.params.book_id;
     let values=[title,authorname,description,thumbnail,shelfName,identifier,id];
 
