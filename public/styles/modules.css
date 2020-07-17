@@ -1,0 +1,154 @@
+.hide_form {
+    display: none;
+    text-align: center;
+
+}
+
+
+.show_form {
+    display: block;
+    text-align: center;
+
+}
+
+
+/* .tit {
+    font-size: 18px;
+    text-align: center;
+    padding: 20px;
+    background-color: #888888;
+} */
+
+.input {
+    border: none;
+    border-radius: 5px;
+    height: 55px;
+    font-size: 25px;
+    margin: 50px 582px;
+    width: 350px;
+}
+
+.radio {
+    background-color: #e4e3e3;
+    border: none;
+    border-radius: 5px;
+    height: 55px;
+    font-size: 25px;
+    margin-bottom: 50px;
+    margin-left: 582px;
+    width: 350px;
+    padding: 14px 5px;
+    box-sizing: border-box;
+}
+
+.searching {
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #f5f5f5;
+    font-size: 22px;
+    margin-left: 582px;
+    margin-bottom: 50px;
+    height: 55px;
+    width: 350px;
+}
+
+.error {
+    background-color: white;
+}
+
+.warning {
+    background-color: white;
+    font-size: 80px;
+    font-weight: bolder;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.para {
+    background-color: white;
+    color: #313131;
+    font-size: 50px;
+    font-weight: normal;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.para1 {
+    background-color: white;
+    font-size: 30px;
+    font-weight: normal;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.index {
+    color: #444444;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.index:hover {
+    color: #000000;
+}
+
+#row {
+    /* padding: 80px 50px; */
+    display: flex;
+}
+
+
+.book {
+    width: 300px;
+    height: 200px
+}
+
+.book1 {
+    height: 100px;
+}
+
+.form,
+#addBook,
+#detail,
+.selectBook,
+.addDB {
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #f5f5f5;
+    font-size: 18px;
+    margin: 20px 50px;
+    margin-top: 8px;
+    height: 35px;
+    width: 200px;
+}
+
+#tilte,
+#authorname,
+#identifier,
+#shelfname,
+#thumbnail,
+#description,
+.updatedetails,
+.deletebook,
+.updateBooks {
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 35px;
+    margin: 8px 48px;
+    width: 198px;
+    background-color: #000000;
+    color: #e4e4e4;
+    text-align: center;
+}
+
+#desc {
+    overflow: auto;
+    height: 80px;
+
+}
+
+.detail {
+    margin: 0 538px;
+}

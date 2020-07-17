@@ -4,32 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/modules.css">
+    <link rel="stylesheet" href="/styles/reset.css">
 
     <title>Search</title>
 </head>
 
 <body>
-    <a href="/">home</a>
-  
+    <header>
+
+        <h1>Best Books!</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/searches/new">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <form action="/searches" method="post">
 
-        <label>
-            <span>search</span>
-            <input type="text" name="searchbox" required><br>
-        </label>
+        <input type="text" name="searchbox"  value='' placeholder="search" class="input" required>
+        
+        <div class="radio">
+            <label>Title</label>
+            <input type="radio" value="title" name="search" id="title" required>
+            <label>Author</label>
+            <input type="radio" value="author" name="search" id="author" required>
+        </div>
 
-        <label for="title">
-            <span>title</span>
-            <input type="radio" name="search" id="title" value="title" required><br>
-        </label>
-
-        <label for="author">
-            <span>author</span>
-            <input type="radio" name="search" id="author" value="author" required>
-        </label>
-
-        <button>search</button>
+        <button type="submit" class="searching">Search</button>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

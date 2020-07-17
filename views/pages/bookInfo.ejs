@@ -5,23 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/layout.css">
+    <link rel="stylesheet" href="/styles/modules.css">
+    <link rel="stylesheet" href="/styles/reset.css">
+
     <title>Book info</title>
 </head>
-<a href="/"> homepage</a>
 
 <body>
 
-    <ul>
-        <%- include('partials/infoLoop.ejs') %>
-    </ul>
+    <header>
+        <h1>Best Books!</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/searches/new">Search</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <div class="bookInfo">
+
+        <img src="<%= books.thumbnail %>">
+        <div class='book'>
+            <h2>
+                <%= books.title %>
+            </h2>
+            <h3>
+                <%= books.authorname %>
+            </h3>
+            <div id="desc">
+                <p>
+                    <%= books.description %>
+                </p>
+            </div>
+
+            <form action="/deletebook/<%= books.id %>?_method=delete" method="post">
+                <button class="deletebook"> delete book</button>
+            </form>
+
+            
+        </div>
+        
+        <button class="updatedetails"> Update details</button>
     
-    <form action="/deletebook/<%= books.id %>?_method=delete" method="post">
-        <button class="deletebook"> delete book</button>
-    </form>
-
-    <button class="updatedetails"> Update details</button>
-
     <form action="/updatebook/<%= books.id %>?_method=put" method="POST" class="hide_form">
         <label for="title">title:</label><br>
         <input type="text" id="tilte" name="title" value="<%= books.title %>"><br>
@@ -38,11 +65,11 @@
         <input type="text" id="shelfname" name="shelfname" value=""><br><br>
         <button class="updateBooks"> Update book</button>
     </form>
+</div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/app.js"></script>
-
 </body>
 
 </html>
