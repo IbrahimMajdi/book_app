@@ -156,14 +156,14 @@ function deleteBook (req,res){
 
 function Book(item) {
 
-    let thumbCheck = item.volumeInfo.imageLinks.thumbnail;
-    thumbCheck = thumbCheck.replace(/^http:\/\//i, 'https://');
+    let thumbCheck = item.volumeInfo.imageLinks;
+    // thumbCheck = thumbCheck.replace(/^http:\/\//i, 'https://');
 
-    this.title = item.volumeInfo.title ? item.volumeInfo.title : 'not avilable';
-    this.authorname = item.volumeInfo.authors ? item.volumeInfo.authors : 'not avilable';
-    this.description = item.volumeInfo.description ? item.volumeInfo.description : 'not avilable';
-    this.thumbnail = thumbCheck ? thumbCheck : 'not avilable';
-    this.identifier = item.volumeInfo.industryIdentifiers[0].identifier ? item.volumeInfo.industryIdentifiers[0].identifier : 'not avilable';
+    this.title = (item.volumeInfo.title) ? item.volumeInfo.title : 'not avilable';
+    this.authorname = (item.volumeInfo.authors) ? item.volumeInfo.authors[0] : 'not avilable';
+    this.description = (item.volumeInfo.description) ? item.volumeInfo.description : 'not avilable';
+    this.thumbnail = (thumbCheck) ? thumbCheck.thumbnail : 'not avilable';
+    this.identifier = item.volumeInfo.industryIdentifiers ? item.volumeInfo.industryIdentifiers[0].identifierr : 'not avilable';
 }
 
 
